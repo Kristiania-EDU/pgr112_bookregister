@@ -55,8 +55,8 @@ public class BookRegister {
     }
 
 
-    public void Save() {
-
+    public ArrayList<Book> all() {
+        return books;
     }
 
     @Override

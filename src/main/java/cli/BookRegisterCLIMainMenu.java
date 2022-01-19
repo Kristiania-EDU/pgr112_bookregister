@@ -6,6 +6,8 @@ import register.BookRegister;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static cli.CLIColorCodes.TEXT_PURPLE;
+
 public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
 
     public BookRegisterCLIMainMenu(BookRegister bookRegister) {
@@ -30,7 +32,9 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
     private class BookOverviewTask implements IBookRegisterCLIMenuTask {
         @Override
         public void execute(Scanner scanner) {
-            System.out.println(bookRegister.toString());
+            colorTextContainer(() -> {
+                System.out.println(bookRegister.toString());
+            }, CLIColorCodes.TEXT_CYAN);
         }
     }
 

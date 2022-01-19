@@ -2,8 +2,13 @@ package cli;
 
 import register.BookRegister;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+import static cli.CLIColorCodes.*;
 
 public abstract class BookRegisterCLIMenu {
     protected BookRegister bookRegister;
@@ -36,6 +41,7 @@ public abstract class BookRegisterCLIMenu {
             BookRegisterMenuCLIOption option = options.get(optionArrayIndex);
 
             if(option != null) {
+                printHeaderLine(option.getTitle());
                 option.getTask().execute(scanner);
             }
         }
@@ -65,5 +71,15 @@ public abstract class BookRegisterCLIMenu {
         }
 
         return option;
+    }
+
+    public void printHeaderLine(String text) {
+        System.out.printf("%s--------------------%s--------------------\n%s", TEXT_GREEN, text, TEXT_RESET);
+    }
+
+    public void colorTextContainer(Runnable method, String color) {
+        System.out.print(color);
+        method.run();
+        System.out.print(TEXT_RESET);
     }
 }
