@@ -14,15 +14,8 @@ public class BookRegister {
         books.add(book);
     }
 
-    public boolean removeBook(String isbn) {
-        for(Book book : books) {
-            if(book.getIsbn().equalsIgnoreCase(isbn)) {
-                books.remove(book);
-                return true;
-            }
-        }
-
-        return false;
+    public void removeBook(Book book) {
+        books.remove(book);
     }
 
     public ArrayList<Book> findFromGenre(String genre) {

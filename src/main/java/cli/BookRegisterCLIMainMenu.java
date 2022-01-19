@@ -62,8 +62,8 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
     private class FindBooksByGenreTask implements IBookRegisterCLIMenuTask {
         @Override
         public void execute(Scanner scanner) {
-            String genreKeyword = inputStringFromConsole("Search genre", scanner);
-            ArrayList<Book> bookMatches = bookRegister.findFromGenre(genreKeyword);
+            String genre = inputStringFromConsole("Search genre", scanner);
+            ArrayList<Book> bookMatches = bookRegister.findFromGenre(genre);
             System.out.println(bookMatches.toString());
         }
     }
@@ -71,8 +71,8 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
     private class FindBooksByAuthorTask implements IBookRegisterCLIMenuTask {
         @Override
         public void execute(Scanner scanner) {
-            String authorKeyword = inputStringFromConsole("Search author", scanner);
-            ArrayList<Book> bookMatches = bookRegister.findFromAuthor(authorKeyword);
+            String author = inputStringFromConsole("Search author", scanner);
+            ArrayList<Book> bookMatches = bookRegister.findFromAuthor(author);
             System.out.println(bookMatches.toString());
         }
     }
@@ -80,13 +80,13 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
     private class FindBookByISBNTask implements IBookRegisterCLIMenuTask {
         @Override
         public void execute(Scanner scanner) {
-            String isbnKeyword = inputStringFromConsole("Search ISBN", scanner);
-            Book bookMatch = bookRegister.findSingleFromISBN(isbnKeyword);
+            String isbn = inputStringFromConsole("Search ISBN", scanner);
+            Book bookMatch = bookRegister.findSingleFromISBN(isbn);
 
             if(bookMatch != null) {
                 System.out.println(bookMatch.toString());
             } else {
-                System.out.printf("No book matching ISBN: %s.\n", isbnKeyword);
+                System.out.printf("No book matching ISBN: %s.\n", isbn);
             }
         }
     }
@@ -94,7 +94,15 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
     private class RemoveBookTask implements IBookRegisterCLIMenuTask {
         @Override
         public void execute(Scanner scanner) {
+            int serialNumber = inputIntegerFromConsole("Serial number", scanner);
+            Book book = bookRegister.findSingleFromSerialNumber(serialNumber);
 
+            if(book != null) {
+                bookRegister.removeBook(book);
+                System.out.printf("Successfully deleted: %s\n", book.toString());
+            } else {
+                System.out.printf("Could not find a book with serial number: %d\n", serialNumber);
+            }
         }
     }
 }
