@@ -7,3 +7,7 @@ This is one of the first "larger" tasks/assignments from the "PGR112" at Høysko
 Project simulates a bookregister with a commandline interface.
 
 Written in Java.
+
+
+![image](https://user-images.githubusercontent.com/24465003/150104962-697f968d-d0d5-4275-9341-17a974ea14af.png)
+
