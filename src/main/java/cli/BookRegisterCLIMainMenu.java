@@ -62,24 +62,32 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
     private class FindBooksByGenreTask implements IBookRegisterCLIMenuTask {
         @Override
         public void execute(Scanner scanner) {
-            String genre = inputStringFromConsole("Search genre", scanner);
-
+            String genreKeyword = inputStringFromConsole("Search genre", scanner);
+            ArrayList<Book> bookMatches = bookRegister.findFromGenre(genreKeyword);
+            System.out.println(bookMatches.toString());
         }
     }
 
     private class FindBooksByAuthorTask implements IBookRegisterCLIMenuTask {
-
         @Override
         public void execute(Scanner scanner) {
-
+            String authorKeyword = inputStringFromConsole("Search author", scanner);
+            ArrayList<Book> bookMatches = bookRegister.findFromAuthor(authorKeyword);
+            System.out.println(bookMatches.toString());
         }
     }
 
     private class FindBookByISBNTask implements IBookRegisterCLIMenuTask {
-
         @Override
         public void execute(Scanner scanner) {
+            String isbnKeyword = inputStringFromConsole("Search ISBN", scanner);
+            Book bookMatch = bookRegister.findSingleFromISBN(isbnKeyword);
 
+            if(bookMatch != null) {
+                System.out.println(bookMatch.toString());
+            } else {
+                System.out.printf("No book matching ISBN: %s.\n", isbnKeyword);
+            }
         }
     }
 
