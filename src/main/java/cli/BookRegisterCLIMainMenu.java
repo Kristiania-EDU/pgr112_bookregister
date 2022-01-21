@@ -18,13 +18,13 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
     protected ArrayList<BookRegisterMenuCLIOption> getOptions() {
         return new ArrayList<>(){
             {
-                add(new BookRegisterMenuCLIOption("Overview of all books. ", new BookOverviewTask()));
-                add(new BookRegisterMenuCLIOption( "Add a book. ", new AddBookTask()));
-                add(new BookRegisterMenuCLIOption( "Modify a book. ", new ModifyBookTask()));
-                add(new BookRegisterMenuCLIOption( "Find a books based on genre. ", new FindBooksByGenreTask()));
-                add(new BookRegisterMenuCLIOption( "Find a books based on author.", new FindBooksByAuthorTask()));
-                add(new BookRegisterMenuCLIOption( "Find a book based on ISBN. ", new FindBookByISBNTask()));
-                add(new BookRegisterMenuCLIOption( "Remove a book. ", new RemoveBookTask()));
+                add(new BookRegisterMenuCLIOption("Overview of all books", new BookOverviewTask()));
+                add(new BookRegisterMenuCLIOption( "Add a book", new AddBookTask()));
+                add(new BookRegisterMenuCLIOption( "Modify a book", new ModifyBookTask()));
+                add(new BookRegisterMenuCLIOption( "Find a books based on genre", new FindBooksByGenreTask()));
+                add(new BookRegisterMenuCLIOption( "Find a books based on author", new FindBooksByAuthorTask()));
+                add(new BookRegisterMenuCLIOption( "Find a book based on ISBN", new FindBookByISBNTask()));
+                add(new BookRegisterMenuCLIOption( "Remove a book", new RemoveBookTask()));
             }
         };
     }
@@ -68,7 +68,12 @@ public class BookRegisterCLIMainMenu extends BookRegisterCLIMenu {
         public void execute(Scanner scanner) {
             String genre = inputStringFromConsole("Search genre", scanner);
             ArrayList<Book> bookMatches = bookRegister.findFromGenre(genre);
-            System.out.println(bookMatches.toString());
+            System.out.printf("There books match the given genre: ".toString());
+            colorTextContainer(() -> {
+                for(Book book : bookMatches) {
+                    System.out.println(book);
+                }
+            }, CLIColorCodes.TEXT_YELLOW);
         }
     }
 

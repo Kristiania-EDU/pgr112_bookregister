@@ -18,6 +18,28 @@ public class ModifyBookCLIMenu extends BookRegisterCLIMenu {
         this.bookToModify = bookToModify;
     }
 
+    @Override
+    protected ArrayList<BookRegisterMenuCLIOption> getOptions() {
+        return new ArrayList<>(){
+            {
+                add(new BookRegisterMenuCLIOption("Change ISBN. ", new ChangeISBNTask()));
+                add(new BookRegisterMenuCLIOption( "Change title. ", new ChangeTitleTask()));
+                add(new BookRegisterMenuCLIOption( "Change author. ", new ChangeAuthorTask()));
+                add(new BookRegisterMenuCLIOption( "Change number of pages.", new ChangeNumberOfPagesTask()));
+                add(new BookRegisterMenuCLIOption( "Change genre.", new ChangeGenreTask()));
+            }
+        };
+    }
+
+    @Override
+    public boolean execute() {
+        System.out.println("-------MODIFY BOOK-------");
+        System.out.println(bookToModify.toString());
+        System.out.println("-------------------------");
+
+        return super.execute();
+    }
+
     private class ChangeISBNTask implements IBookRegisterCLIMenuTask {
         @Override
         public void execute(Scanner scanner) {
@@ -56,27 +78,5 @@ public class ModifyBookCLIMenu extends BookRegisterCLIMenu {
             String newGenre = inputStringFromConsole("New genre", scanner);
             bookToModify.setGenre(newGenre);
         }
-    }
-
-    @Override
-    protected ArrayList<BookRegisterMenuCLIOption> getOptions() {
-        return new ArrayList<>(){
-            {
-                add(new BookRegisterMenuCLIOption("Change ISBN. ", new ChangeISBNTask()));
-                add(new BookRegisterMenuCLIOption( "Change title. ", new ChangeTitleTask()));
-                add(new BookRegisterMenuCLIOption( "Change author. ", new ChangeAuthorTask()));
-                add(new BookRegisterMenuCLIOption( "Change number of pages.", new ChangeNumberOfPagesTask()));
-                add(new BookRegisterMenuCLIOption( "Change genre.", new ChangeGenreTask()));
-            }
-        };
-    }
-
-    @Override
-    public boolean execute() {
-        System.out.println("-------MODIFY BOOK-------");
-        System.out.println(bookToModify.toString());
-        System.out.println("-------------------------");
-
-        return super.execute();
     }
 }
