@@ -8,6 +8,10 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Scanner;
 
+/**
+* Author: Sebastian Nordby
+* Kristiania-class: PGR112 - Object Oriented Programming
+*/
 public class Program {
     public static void main(String[] args) throws FileNotFoundException {
         File bookRegisterTextFile = new File("src/bookregister.txt");
